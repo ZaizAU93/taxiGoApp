@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form id="formLogin">
+        <div class="form-group">
+            <label for="username">Name:</label>
+            <input type="text" class="form-control" id="username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">password:</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+
+        <button type="submit"  class="btn btn-primary">Войти</button>
+    </form>
+
+    <input type="button" onclick="redir()"> Перейти на страницу <input>
+</div>
+
+<input type="hidden" id="driverId" value="">
+
+<script>
+    document.getElementById("formLogin").addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch(`http://localhost:8080/auth/authenticate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        });
+        const data = await response.json();
+
+        var token = localStorage.setItem('jwtToken', data.token);
+        console.log(data.token);
+    });
+
+    function redir() {
+        // получаем токен из localStorage
+        const token1 = localStorage.getItem('jwtToken');
+        console.log(token1);
+        if (token1) {
+            const res =  fetch('http://localhost:8080/editDriver.html', {
+                headers: {
+                    "Authorization": "Bearer " + token1
+                }
+            })
+
+            if (res) {
+                console.log(res);
+                window.location.href = "http://localhost:8080/editDriver.html";
+            }
+
+        }
+    }
+</script>
+</body>
+</html>

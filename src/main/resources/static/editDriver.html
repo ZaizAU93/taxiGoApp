@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Driver</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+
+<div class="container">
+    <h2>Edit Driver</h2>
+    <form id="editDriverForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" name="surname">
+        </div>
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" id="address" name="address">
+        </div>
+        <div class="form-group">
+            <label for="rating">Rating:</label>
+            <input type="text" class="form-control" id="rating" name="rating">
+        </div>
+        <div class="form-group">
+            <label for="registrationDate">Registration Date:</label>
+            <input type="text" class="form-control" id="registrationDate" name="registrationDate">
+        </div>
+        <button type="submit" class="btn btn-primary">Update Driver</button>
+    </form>
+
+    <img src="" id="img" class="img">
+
+</div>
+<input type="hidden" id="driverId" value="">
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const driverId = urlParams.get('id');
+
+    fetch(`http://localhost:8080/drivers/${driverId}`)
+        .then(response => response.json())
+        .then(driver => {
+            document.getElementById("driverId").value = driver.id;
+            document.getElementById("name").value = driver.name;
+            document.getElementById("surname").value = driver.surname;
+            document.getElementById("phoneNumber").value = driver.phoneNumber;
+            document.getElementById("address").value = driver.address;
+            document.getElementById("rating").value = driver.rating;
+            document.getElementById("registrationDate").value = driver.registrationDate;
+            document.getElementById("img").src = driver.imgUrl;
+        })
+        .catch(error => console.error(error));
+
+    document.getElementById("editDriverForm").addEventListener("submit", function(event){
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const surname = document.getElementById("surname").value;
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const address = document.getElementById("address").value;
+        const rating = document.getElementById("rating").value;
+        const registrationDate = document.getElementById("registrationDate").value;
+
+        fetch(`http://localhost:8080/drivers/update/${driverId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                surname: surname,
+                phoneNumber: phoneNumber,
+                address: address,
+                rating: rating,
+                registrationDate: registrationDate
+            })
+        })
+            .then(response => {
+                console.log('Driver updated');
+            // Redirect to the main page after updating
+            })
+            .catch(error => console.error(error));
+    });
+
+
+</script>
+
+
+</body>
+</html>

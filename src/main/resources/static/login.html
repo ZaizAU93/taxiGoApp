@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form id="formLogin">
+        <div class="form-group">
+            <label for="username">Name:</label>
+            <input class="form-control" id="username" name="username" type="text">
+        </div>
+        <div class="form-group">
+            <label for="password">password:</label>
+            <input class="form-control" id="password" name="password" type="password">
+        </div>
+        <input class="form-control" type="search">
+        <input type="tel">
+        <input type="checkbox">
+        <input type="datetime-local">
+        <button class="btn btn-primary" type="submit">Войти</button>
+
+
+    </form>
+
+
+</div>
+
+<input id="driverId" type="hidden" value="">
+
+<script>
+    document.getElementById("formLogin").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch(`http://localhost:8080/auth/authenticate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        });
+        const data = response.json();
+        // localStorage.setItem('jwtToken', data.token)
+        //console.log(token);
+        data.then((data) => {
+            console.log(data.token);
+            //  localStorage.setItem('jwtToken', data.token)
+            window.location.href = "http://localhost:8080/editDriver.html";
+        })
+        //
+    })
+
+
+    // async function redir() {
+    //     // получаем токен из localStorage
+    //     const token = localStorage.getItem('jwtToken');
+    //     console.log(token);
+    //
+    //     let resp = await fetch('http://localhost:8080/drivers/Demo', {
+    //         headers: {
+    //             "Authorization": "Bearer " + token
+    //         }
+    //     })
+    //     console.log(resp.status);
+    //     console.log(resp.text());
+    //     window.location.href = "editDriver.html";
+    //
+    // }
+
+</script>
+</body>
+</html>
