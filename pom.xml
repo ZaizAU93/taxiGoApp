@@ -88,7 +88,10 @@
             <artifactId>jjwt</artifactId>
             <version>0.12.5</version>
         </dependency>
-
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
