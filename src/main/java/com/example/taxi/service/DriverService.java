@@ -34,11 +34,11 @@ public class DriverService {
         return driverRepository.findById(id).orElse(null);
     }
 
-    public Driver getByLogin(String login) {
-        List<Driver> drivers = driverRepository.findAll();
-        return drivers.stream().filter(driver -> driver.equals(login)).
-                findFirst().orElse(null);
-    }
+//    public Driver getByLogin(String login) {
+//        List<Driver> drivers = driverRepository.findAll();
+//        return drivers.stream().filter(driver -> driver.equals(login)).
+//                findFirst().orElse(null);
+//    }
 
     public Driver createDriver(Driver driver) {
         return driverRepository.save(driver);

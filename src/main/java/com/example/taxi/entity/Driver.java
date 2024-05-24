@@ -2,17 +2,22 @@ package com.example.taxi.entity;
 
 import com.example.taxi.role.Role;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+
 @Component
 @Data
 @Entity
 @Table(name = "driver")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Driver implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +39,7 @@ public class Driver implements UserDetails {
     private String registrationDate;
 
     @Column(name = "rating")
-    private String  rating;
+    private String rating;
 
     @Column(name = "status")
     private boolean status;
@@ -50,33 +55,13 @@ public class Driver implements UserDetails {
 
     @Column(name = "role")
     private Role role;
-    public Driver(){}
+
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setRegistrationDate(String registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public String getName() {
+    public String getName(String john) {
         return name;
     }
 
@@ -84,28 +69,48 @@ public class Driver implements UserDetails {
         return surname;
     }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {
         return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getRegistrationDate() {
         return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public String getRating() {
         return rating;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @PrePersist

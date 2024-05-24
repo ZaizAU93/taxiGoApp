@@ -35,6 +35,7 @@ public class OrderController {
     @Operation(description = "Поиск заказа")
     @PostMapping("/search")
     @ResponseBody
+
     public List<Order> search(@RequestBody Map<String, String> searchInput) {
         String driverName = searchInput.get("searchInput");
         return orderService.searchDriver(driverName);

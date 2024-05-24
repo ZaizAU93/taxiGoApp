@@ -49,7 +49,7 @@ public class TaxiController {
         return taxiService.updateTaxi(id, taxi);
     }
 
-    @Operation(description = "Инормация об атво")
+    @Operation(description = "Информация об атво")
     @GetMapping("/{id}")
     public Taxi showIdTaxi(@PathVariable("id") int id) {
         return taxiService.getTaxiById(id);
