@@ -20,7 +20,7 @@ Spring Data JPA
 Spring Security
 Hibernate
 OpenAPI (Swagger)
-Database (e.g. MySQL)
+Database (MySQL)
 JUnit for testing
 Running the Application
 Make sure you have Java 8+ and Maven installed.
