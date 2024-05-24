@@ -1,0 +1,36 @@
+REST application for taxi ordering
+Project Description
+This application is designed to simulate the work of a taxi ordering service. Users can register, place taxi orders, track order status, and rate service quality.
+The application allows customers to quickly and conveniently order a taxi and for drivers to receive orders.
+
+Functionality
+User registration (clients and drivers);
+Placing taxi orders;
+Tracking order status;
+Rating service quality;
+User authentication;
+User profile management;
+Order management;
+Management of driver and vehicle data.
+Technologies
+Java Spring Boot
+Spring Core
+Spring AOP
+Spring Data JPA
+Spring Security
+Hibernate
+OpenAPI (Swagger)
+Database (e.g. MySQL)
+JUnit for testing
+Running the Application
+Make sure you have Java 8+ and Maven installed.
+Clone the project repository: git clone https://github.com/ZaizAU93/taxiGoApp.git
+Navigate to the project folder: cd taxi
+Configure the database connection in the application.properties file.
+Run the application using the command: mvn spring-boot:run
+API Documentation
+Once the application is running, you can view the API documentation by visiting
+http://localhost:8080/swagger-ui.html
+
+Author
+Zaitsau Andrei
